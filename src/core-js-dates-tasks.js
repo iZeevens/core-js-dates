@@ -206,6 +206,7 @@ function getWeekNumberByDate(date) {
   const daysDifference = Math.floor(
     (date - dateStarts) / (24 * 60 * 60 * 1000)
   );
+
   const firstDayOfWeek = (dateStarts.getDay() + 6) % 7;
   const daysInFirstWeek = 7 - firstDayOfWeek;
   let weekNumber = Math.ceil((daysDifference - daysInFirstWeek + 1) / 7) + 1;
@@ -225,10 +226,20 @@ function getWeekNumberByDate(date) {
  * Date(2024, 0, 13) => Date(2024, 8, 13)
  * Date(2023, 1, 1) => Date(2023, 9, 13)
  */
-function getNextFridayThe13th(/* date */) {
-  throw new Error('Not implemented');
+function getNextFridayThe13th(date) {
+  let newDate;
+  const loopTrue = true;
+  while (loopTrue) {
+    const timeIncrement = 1000 * 3600 * 24;
+    const newTime = date.getTime() + timeIncrement;
+    date.setTime(newTime);
+    if (date.getDate() === 13 && date.getDay() === 5) {
+      newDate = date;
+      break;
+    }
+  }
+  return newDate;
 }
-
 /**
  * Returns the quarter of the year for a given date.
  *
